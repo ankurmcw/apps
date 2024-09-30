@@ -1,4 +1,4 @@
-package com.mcw.kevdb;
+package com.mcw.kvdb;
 
 import java.util.HashMap;
 import java.util.Map;
