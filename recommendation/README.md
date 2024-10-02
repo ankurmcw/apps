@@ -1,7 +1,7 @@
 Objective:
 ----------
 
-Design and implement a simple in-memory key-value database in Java.
+Implement a recommendation engine.
 
 Requirements:
 -------------
