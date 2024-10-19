@@ -6,7 +6,6 @@ Implement a recommendation engine.
 Requirements:
 -------------
 
-
 * Many users will make purchases at more than one merchant.
 * We'd like to analyze that cross purchasing behavior to make recommendations to new user about where else they might like to shop.
 * Imagine we have a list where each entry is an individual user's history of purchases, i.e., the list of merchants that the user has made a purchase at.
