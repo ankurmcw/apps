@@ -1,17 +1,15 @@
 package model
 
-import "context"
-
 type State struct {
     id    string
 }
 
-func NewState(ctx context.Context, id string) *State {
+func NewState(id string) *State {
     return &State{
         id: id,
     }
 }
 
-func (s *State) GetId(ctx context.Context) string {
+func (s *State) GetId() string {
     return s.id
 }

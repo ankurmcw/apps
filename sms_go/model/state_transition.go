@@ -1,14 +1,12 @@
 package model
 
-import "context"
-
 type StateTransition struct {
     currentState *State
     event        *Event
     nextState    *State
 }
 
-func NewStateTransition(ctx context.Context, event *Event, currentState, nextState *State) *StateTransition {
+func NewStateTransition(event *Event, currentState, nextState *State) *StateTransition {
     return &StateTransition{
         currentState: currentState,
         event: event,
@@ -16,14 +14,14 @@ func NewStateTransition(ctx context.Context, event *Event, currentState, nextSta
     }
 }
 
-func (st *StateTransition) GetCurrentState(ctx context.Context) *State {
+func (st *StateTransition) GetCurrentState() *State {
     return st.currentState
 }
 
-func (st *StateTransition) GetEvent(ctx context.Context) *Event {
+func (st *StateTransition) GetEvent() *Event {
     return st.event
 }
 
-func (st *StateTransition) GetNextState(ctx context.Context) *State {
+func (st *StateTransition) GetNextState() *State {
     return st.nextState
 }

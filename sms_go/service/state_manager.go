@@ -18,10 +18,10 @@ func NewStateManager(ctx context.Context, stateTransitionRepo repository.StateTr
 }
 
 func (sm *StateManager) GetNextState(ctx context.Context, currentState *model.State, event *model.Event) (*model.State, error) {
-    id := currentState.GetId(ctx) + event.GetId(ctx)
-    stateTransition := sm.stateTransitionRepo.Find(ctx, id)
+    id := currentState.GetId() + event.GetId()
+    stateTransition := sm.stateTransitionRepo.Find(id)
     if stateTransition == nil {
-        return nil, fmt.Errorf("no transitions found for state '%s' and event '%s", currentState.GetId(ctx), event.GetId(ctx))
+        return nil, fmt.Errorf("no transitions found for state '%s' and event '%s", currentState.GetId(), event.GetId())
     }
-    return stateTransition.GetNextState(ctx), nil
+    return stateTransition.GetNextState(), nil
 }

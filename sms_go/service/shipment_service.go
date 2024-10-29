@@ -31,28 +31,28 @@ func NewShipmentService(
 }
 
 func (ss *ShipmentService) CreateShipment(ctx context.Context, shipmentId, stateId string) (*model.Shipment, error) {
-    currentState := ss.stateRepository.Find(ctx, stateId)
+    currentState := ss.stateRepository.Find(stateId)
     if currentState == nil {
         return nil, fmt.Errorf("no state found with id '%s", stateId)
     }
-    shipment := model.NewShipment(ctx, shipmentId, currentState)
-    ss.shipmentRepository.Save(ctx, shipment)
+    shipment := model.NewShipment(shipmentId, currentState)
+    ss.shipmentRepository.Save(shipment)
     return shipment, nil
 }
 
 func (ss *ShipmentService) UpdateState(ctx context.Context, shipmentId, eventId string) (*model.Shipment, error) {
-    shipment := ss.shipmentRepository.Find(ctx, shipmentId)
+    shipment := ss.shipmentRepository.Find(shipmentId)
     if shipment == nil {
         return nil, fmt.Errorf("no shipment found with id '%s'", shipmentId)
     }
-    event := ss.eventRepository.Find(ctx, eventId)
+    event := ss.eventRepository.Find(eventId)
     if event == nil {
         return nil, fmt.Errorf("no event found with id '%s'", eventId)
     }
-    nextState, err := ss.stateManager.GetNextState(ctx, shipment.GetCurrentState(ctx), event)
+    nextState, err := ss.stateManager.GetNextState(ctx, shipment.GetCurrentState(), event)
     if err != nil {
         return nil, err
     }
-    shipment.AddNextState(ctx, nextState)
+    shipment.AddNextState(nextState)
     return shipment, nil
 }
