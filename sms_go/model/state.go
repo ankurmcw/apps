@@ -1,15 +1,15 @@
 package model
 
 type State struct {
-    id    string
+	id string
 }
 
 func NewState(id string) *State {
-    return &State{
-        id: id,
-    }
+	return &State{
+		id: id,
+	}
 }
 
 func (s *State) GetId() string {
-    return s.id
+	return s.id
 }
